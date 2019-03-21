@@ -1,9 +1,9 @@
 #!/usr/bin/python
 # -*- coding: UTF_8 -*-
 # 第一个注释 hello world
-print "你好，世界"
 
 print "hello world"
+print "你好，世界"
 
 # if 判断
 if True:
