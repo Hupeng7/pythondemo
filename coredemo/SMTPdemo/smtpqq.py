@@ -7,13 +7,11 @@ from email.utils import formataddr
 
 # 需要现在 邮箱开通SMTP权限
 my_sender = '1321781093@qq.com'  # 发件人邮箱账号
-my_pass = 'rmigeehtpkjphgfg'  # 发件人邮箱密码  其实是kaile SMTP 权限的 授权码
+my_pass = 'rmigeehtpkjphgfg'  # 发件人邮箱密码  其实是开了 SMTP 权限的 授权码
 my_user = '1321781093@qq.com'  # 收件人邮箱账号，我
 yu_user = '171956781@qq.com'  # 收件人邮箱账号，土豪
 dong_user = '244010036@qq.com'  # 收件人邮箱账号，栋
 msg_text = '这个收件人就是土豪'
-
-
 def mail():
     ret = True
     try:
