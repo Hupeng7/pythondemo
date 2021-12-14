@@ -1,0 +1,310 @@
+Index: coredemo/demo202309/httpDemo2.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/coredemo/demo202309/httpDemo2.py b/coredemo/kaoshibaodian202309/httpDemo2.py
+rename from coredemo/demo202309/httpDemo2.py
+rename to coredemo/kaoshibaodian202309/httpDemo2.py
+--- a/coredemo/demo202309/httpDemo2.py	(revision 8659bd814515b6ff6a63131eae3257efcde8cefb)
++++ b/coredemo/kaoshibaodian202309/httpDemo2.py	(date 1694057727829)
+@@ -1,4 +1,5 @@
+-import requests
++#!/usr/bin/python3
++
+ import json
+ 
+ # 定义请求URL  根据AllTestID获取试题详情
+@@ -25,34 +26,26 @@
+ 
+ list = [1, 5, 100]
+ 
+-for i in range(4):
+-    # 字符串转py对象
+-    idArray = json.loads(params['idArray'])[0]  # py对象
+-    AllTestID = idArray["AllTestID"]
+-
+-    # 重新赋值
+-    idArray["AllTestID"] = list[i]
+-
+-    # py对象转字符串
+-    params['idArray'] = json.dumps([idArray])
+-
+-    print("params:", params)
+-
+ for i in range(4):
+     cur = params['idArray']
+-    print("cur-1:", cur) # [{"AllTestID":23408,"ChildTableID":-1}]
+-    idArray = json.loads(cur)[0]  # py对象
++    print("cur-1:", cur)  # [{"AllTestID":23408,"ChildTableID":-1}]
++
++    # 字符串转py对象
++    idArray = json.loads(cur)[0]
+     print("idArray:", idArray)  # idArray: {'AllTestID': 23408, 'ChildTableID': -1}
+ 
+     AllTestID = idArray["AllTestID"]
+     print("AllTestID-1:", AllTestID)  # 23408
+ 
+-    print("AllTestID-2:", list[i])  # 5
++    print("list[i]:", list[i])  # 5
++
++    # 重新赋值
+     idArray["AllTestID"] = list[i]
+     print("AllTestID-2:", idArray["AllTestID"])
+ 
+     print("idArray-2:", idArray)
+ 
++    # py对象转字符串 并赋值
+     params['idArray'] = json.dumps([idArray])
+     print("cur-2:", cur)
+ 
+Index: coredemo/demo202309/httpDemo.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/coredemo/demo202309/httpDemo.py b/coredemo/kaoshibaodian202309/httpDemo.py
+rename from coredemo/demo202309/httpDemo.py
+rename to coredemo/kaoshibaodian202309/httpDemo.py
+--- a/coredemo/demo202309/httpDemo.py	(revision 8659bd814515b6ff6a63131eae3257efcde8cefb)
++++ b/coredemo/kaoshibaodian202309/httpDemo.py	(date 1694057342802)
+@@ -6,7 +6,7 @@
+ from decimal import Decimal, getcontext
+ import time
+ 
+-
++# 测试不对 生成精度超过23位的数据
+ def random_decimal():
+     # 设置Decimal精度，保留小数点后23位
+     getcontext().prec = 25  # 23位小数 + 2位整数部分
+@@ -66,30 +66,9 @@
+     "terminalType": "4"
+ }
+ 
+-# {
+-# 	'appID': 16742,
+-# 	'guid': 'dm8qMrnVae8Evu2v9mq3EjXec2A9blJq504166096',
+-# 	'idArray': [{
+-# 		'AllTestID': 23444,
+-# 		'ChildTableID': -1
+-# 	}],
+-# 	'isDealTitle': 1,
+-# 	'cptID': 19,
+-# 	'inrTime': 7944,
+-# 	'testCounts': 2,
+-# 	'authority': 'https://slb-exam.ksbao.com',
+-# 	'clientType': 1,
+-# 	'validate': 'undefined',
+-# 	'client': 'pc',
+-# 	'clientver': 'wide.ksbao.com',
+-# 	'v': 0.2764176778792991,
+-# 	'terminalType': 4
+-# }
+-
+ # 发送POST请求
+ getchatpterExx_response = requests.post(getchatpterExx_url, json=getchatpterExx_request_data)
+ 
+-
+ def getchatpterExxRequest(cptID):
+     getchatpterExx_request_data['cptID'] = cptID
+     getchatpterExx_response = requests.post(getchatpterExx_url, json=getchatpterExx_request_data)
+@@ -114,6 +93,7 @@
+ 
+     # 重新赋值
+     idArray["AllTestID"] = AllTestID
++
+     # py对象转字符串
+     getChapterTestOne_request_params['idArray'] = json.dumps([idArray])
+ 
+Index: coredemo/demo202309/httpDemo3.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/coredemo/demo202309/httpDemo3.py b/coredemo/kaoshibaodian202309/httpDemo3.py
+rename from coredemo/demo202309/httpDemo3.py
+rename to coredemo/kaoshibaodian202309/httpDemo3.py
+--- a/coredemo/demo202309/httpDemo3.py	(revision 8659bd814515b6ff6a63131eae3257efcde8cefb)
++++ b/coredemo/kaoshibaodian202309/httpDemo3.py	(date 1694057890614)
+@@ -1,5 +1,4 @@
+ import requests
+-import json
+ 
+ # 定义请求URL  GET 获取章节id列表
+ url = "https://slb-exam.ksbao.com/api/chapterMenu/getCptStatistics?guid=dm8qMrnVae8Evu2v9mq3EjXec2A9blJq504166096&appID=16742&client=pc&terminalType=4&clientver=wide.ksbao.com&v=0.28001008881715567168839&_u=504166096"
+@@ -13,16 +12,17 @@
+ if response.status_code == 200:
+     print("请求成功！")
+     print(response.text)
++
+     response = response.json()
+     Cpt_Object_list = response['data']
+-    print("Cpt_Object_list:",Cpt_Object_list)
++    print("Cpt_Object_list:", Cpt_Object_list)
+ 
+-    CptID_list =[]
++    CptID_list = []
+     for i in range(len(Cpt_Object_list)):
+         CptID_list.append(Cpt_Object_list[i]['CptID'])
+ 
+-    print("CptID_list len:",len(Cpt_Object_list))
+-    print("CptID_list:",CptID_list)
++    print("CptID_list len:", len(Cpt_Object_list))
++    print("CptID_list:", CptID_list)
+ else:
+     print(f"请求失败，状态码：{response.status_code}")
+     print(response.text)
+@@ -30,7 +30,7 @@
+ CptID_list len: 249
+ CptID_list: [7, 8, 9, 10, 11, 12, 13, 14, 19, 20, 21, 34, 38, 39, 40, 41, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 267, 268, 269, 270, 271, 272, 273, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328, 332, 339, 341, 342, 343, 344, 345, 346, 347, 348, 349, 350, 351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363]
+ 
+-
++response data
+ {
+ 	"msg": "获取成功",
+ 	"data": [{
+@@ -2029,4 +2029,4 @@
+ 	"status": 200
+ }
+ 
+-"""
+\ No newline at end of file
++"""
+Index: coredemo/demo202309/kaoshibaodian_download.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/coredemo/demo202309/kaoshibaodian_download.py b/coredemo/kaoshibaodian202309/kaoshibaodian_download.py
+rename from coredemo/demo202309/kaoshibaodian_download.py
+rename to coredemo/kaoshibaodian202309/kaoshibaodian_download.py
+--- a/coredemo/demo202309/kaoshibaodian_download.py	(revision 8659bd814515b6ff6a63131eae3257efcde8cefb)
++++ b/coredemo/kaoshibaodian202309/kaoshibaodian_download.py	(date 1694057959560)
+@@ -97,7 +97,7 @@
+ from Crypto.Util.Padding import pad, unpad
+ 
+ 
+-# 通字符串转换与十六进制字符串互转
++# 字符串转换与十六进制字符串互转
+ # 将普通字符串转换为十六进制字符串
+ # normal_string = "Hello, 你好世界！"
+ # hex_string = binascii.hexlify(normal_string.encode('utf-8')).decode('utf-8')
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"a45e85ee-9c5c-42b3-8f0e-f21c9477dc54\" name=\"Changes\" comment=\"add\">\r\n      <change afterPath=\"$PROJECT_DIR$/coredemo/demo2022/MysqlDemo1.py\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/coredemo/demo2022/MysqlDemo2.py\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/coredemo/demo2022/main.py\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/coredemo/demo2022/mysqlOperate.py\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/coredemo/demo2022/nba.csv\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/coredemo/demo202309/httpDemo.py\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/coredemo/demo202309/httpDemo2.py\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/coredemo/demo202309/httpDemo3.py\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/coredemo/demo202309/kaoshibaodian_download.py\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/coredemo/demo202309/ksbd_y_20230906 - 副本.docx\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/coredemo/demo202309/ksbd_y_20230906.docx\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/coredemo/demo202309/log.txt\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/coredemo/demo202309/main.py\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/coredemo/demo202309/my_document.docx\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/coredemo/demo202309/my_document1.docx\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/coredemo/demo202309/my_document2.docx\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/coredemo/demo202309/my_document3.docx\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/coredemo/demo202309/testDemo1.py\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/coredemo/demo202309/to_word.py\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/coredemo/py3/demo6.py\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_14_16_14_[Changes]/shelved.patch\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_14_16_14__Changes_.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/coredemo/py3/demo5.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/coredemo/py3/demo5.py\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Python Script\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitSEFilterConfiguration\">\r\n    <file-type-list>\r\n      <filtered-out-file-type name=\"LOCAL_BRANCH\" />\r\n      <filtered-out-file-type name=\"REMOTE_BRANCH\" />\r\n      <filtered-out-file-type name=\"TAG\" />\r\n      <filtered-out-file-type name=\"COMMIT_BY_MESSAGE\" />\r\n    </file-type-list>\r\n  </component>\r\n  <component name=\"HighlightingSettingsPerFile\">\r\n    <setting file=\"file://$PROJECT_DIR$/coredemo/demo202309/httpDemo2.py\" root0=\"FORCE_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/coredemo/demo202309/httpDemo.py\" root0=\"FORCE_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/coredemo/demo202309/httpDemo3.py\" root0=\"FORCE_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/coredemo/demo202309/kaoshibaodian_download.py\" root0=\"FORCE_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/coredemo/demo202309/log.txt\" root0=\"FORCE_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/coredemo/demo2022/MysqlDemo2.py\" root0=\"FORCE_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/coredemo/demo202309/testDemo1.py\" root0=\"FORCE_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/coredemo/demo202309/to_word.py\" root0=\"FORCE_HIGHLIGHTING\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"22GaiDwzDKvhbXsAZAdKavXeBXn\" />\r\n  <component name=\"ProjectLevelVcsManager\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$/coredemo/demo202309\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"E:\\02-work\\code\\bruce_projects\\pythondemo\\coredemo\\demo202309\" />\r\n      <recent name=\"E:\\02-work\\code\\bruce_projects\\pythondemo\\coredemo\\demo2022\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Python.to_word\">\r\n    <configuration name=\"httpDemo\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"pythondemo\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$/coredemo/demo202309\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/coredemo/demo202309/httpDemo.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"httpDemo3\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"pythondemo\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$/coredemo/demo202309\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/coredemo/demo202309/httpDemo3.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"kaoshibaodian_download (1)\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"pythondemo\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$/coredemo/demo202309\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/coredemo/demo202309/kaoshibaodian_download.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"testDemo1\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"pythondemo\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$/coredemo/demo202309\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/coredemo/demo202309/testDemo1.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"to_word\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"pythondemo\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$/coredemo/demo202309\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/coredemo/demo202309/to_word.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Python.to_word\" />\r\n        <item itemvalue=\"Python.kaoshibaodian_download (1)\" />\r\n        <item itemvalue=\"Python.testDemo1\" />\r\n        <item itemvalue=\"Python.httpDemo3\" />\r\n        <item itemvalue=\"Python.httpDemo\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"a45e85ee-9c5c-42b3-8f0e-f21c9477dc54\" name=\"Changes\" comment=\"\" />\r\n      <created>1639466505573</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1639466505573</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"add\">\r\n      <created>1639476255762</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1639476255762</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"2\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"add\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"add\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 8659bd814515b6ff6a63131eae3257efcde8cefb)
++++ b/.idea/workspace.xml	(date 1694057231746)
+@@ -5,30 +5,21 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="a45e85ee-9c5c-42b3-8f0e-f21c9477dc54" name="Changes" comment="add">
+-      <change afterPath="$PROJECT_DIR$/coredemo/demo2022/MysqlDemo1.py" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/coredemo/demo2022/MysqlDemo2.py" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/coredemo/demo2022/main.py" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/coredemo/demo2022/mysqlOperate.py" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/coredemo/demo2022/nba.csv" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/coredemo/demo202309/httpDemo.py" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/coredemo/demo202309/httpDemo2.py" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/coredemo/demo202309/httpDemo3.py" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/coredemo/demo202309/kaoshibaodian_download.py" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/coredemo/demo202309/ksbd_y_20230906 - 副本.docx" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/coredemo/demo202309/ksbd_y_20230906.docx" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/coredemo/demo202309/log.txt" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/coredemo/demo202309/main.py" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/coredemo/demo202309/my_document.docx" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/coredemo/demo202309/my_document1.docx" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/coredemo/demo202309/my_document2.docx" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/coredemo/demo202309/my_document3.docx" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/coredemo/demo202309/testDemo1.py" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/coredemo/demo202309/to_word.py" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/coredemo/py3/demo6.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_14_16_14_[Changes]/shelved.patch" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_14_16_14__Changes_.xml" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/coredemo/py3/demo5.py" beforeDir="false" afterPath="$PROJECT_DIR$/coredemo/py3/demo5.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/coredemo/demo202309/httpDemo.py" beforeDir="false" afterPath="$PROJECT_DIR$/coredemo/kaoshibaodian202309/httpDemo.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/coredemo/demo202309/httpDemo2.py" beforeDir="false" afterPath="$PROJECT_DIR$/coredemo/kaoshibaodian202309/httpDemo2.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/coredemo/demo202309/httpDemo3.py" beforeDir="false" afterPath="$PROJECT_DIR$/coredemo/kaoshibaodian202309/httpDemo3.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/coredemo/demo202309/kaoshibaodian_download.py" beforeDir="false" afterPath="$PROJECT_DIR$/coredemo/kaoshibaodian202309/kaoshibaodian_download.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/coredemo/demo202309/ksbd_y_20230906 - 副本.docx" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/coredemo/demo202309/ksbd_y_20230906.docx" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/coredemo/demo202309/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/coredemo/kaoshibaodian202309/log.txt" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/coredemo/demo202309/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/coredemo/kaoshibaodian202309/main.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/coredemo/demo202309/my_document.docx" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/coredemo/demo202309/my_document1.docx" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/coredemo/demo202309/my_document2.docx" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/coredemo/demo202309/my_document3.docx" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/coredemo/demo202309/testDemo1.py" beforeDir="false" afterPath="$PROJECT_DIR$/coredemo/kaoshibaodian202309/testDemo1.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/coredemo/demo202309/to_word.py" beforeDir="false" afterPath="$PROJECT_DIR$/coredemo/kaoshibaodian202309/to_word.py" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -54,14 +45,14 @@
+     </file-type-list>
+   </component>
+   <component name="HighlightingSettingsPerFile">
+-    <setting file="file://$PROJECT_DIR$/coredemo/demo202309/httpDemo2.py" root0="FORCE_HIGHLIGHTING" />
+-    <setting file="file://$PROJECT_DIR$/coredemo/demo202309/httpDemo.py" root0="FORCE_HIGHLIGHTING" />
+-    <setting file="file://$PROJECT_DIR$/coredemo/demo202309/httpDemo3.py" root0="FORCE_HIGHLIGHTING" />
+-    <setting file="file://$PROJECT_DIR$/coredemo/demo202309/kaoshibaodian_download.py" root0="FORCE_HIGHLIGHTING" />
+-    <setting file="file://$PROJECT_DIR$/coredemo/demo202309/log.txt" root0="FORCE_HIGHLIGHTING" />
++    <setting file="file://$PROJECT_DIR$/coredemo/kaoshibaodian202309/httpDemo2.py" root0="FORCE_HIGHLIGHTING" />
++    <setting file="file://$PROJECT_DIR$/coredemo/kaoshibaodian202309/httpDemo.py" root0="FORCE_HIGHLIGHTING" />
++    <setting file="file://$PROJECT_DIR$/coredemo/kaoshibaodian202309/httpDemo3.py" root0="FORCE_HIGHLIGHTING" />
++    <setting file="file://$PROJECT_DIR$/coredemo/kaoshibaodian202309/kaoshibaodian_download.py" root0="FORCE_HIGHLIGHTING" />
++    <setting file="file://$PROJECT_DIR$/coredemo/kaoshibaodian202309/log.txt" root0="FORCE_HIGHLIGHTING" />
+     <setting file="file://$PROJECT_DIR$/coredemo/demo2022/MysqlDemo2.py" root0="FORCE_HIGHLIGHTING" />
+-    <setting file="file://$PROJECT_DIR$/coredemo/demo202309/testDemo1.py" root0="FORCE_HIGHLIGHTING" />
+-    <setting file="file://$PROJECT_DIR$/coredemo/demo202309/to_word.py" root0="FORCE_HIGHLIGHTING" />
++    <setting file="file://$PROJECT_DIR$/coredemo/kaoshibaodian202309/testDemo1.py" root0="FORCE_HIGHLIGHTING" />
++    <setting file="file://$PROJECT_DIR$/coredemo/kaoshibaodian202309/to_word.py" root0="FORCE_HIGHLIGHTING" />
+   </component>
+   <component name="ProjectId" id="22GaiDwzDKvhbXsAZAdKavXeBXn" />
+   <component name="ProjectLevelVcsManager">
+@@ -215,7 +206,28 @@
+       <option name="project" value="LOCAL" />
+       <updated>1639476255762</updated>
+     </task>
+-    <option name="localTasksCounter" value="2" />
++    <task id="LOCAL-00002" summary="add">
++      <created>1694056796880</created>
++      <option name="number" value="00002" />
++      <option name="presentableId" value="LOCAL-00002" />
++      <option name="project" value="LOCAL" />
++      <updated>1694056796880</updated>
++    </task>
++    <task id="LOCAL-00003" summary="add">
++      <created>1694056847173</created>
++      <option name="number" value="00003" />
++      <option name="presentableId" value="LOCAL-00003" />
++      <option name="project" value="LOCAL" />
++      <updated>1694056847173</updated>
++    </task>
++    <task id="LOCAL-00004" summary="add">
++      <created>1694056855882</created>
++      <option name="number" value="00004" />
++      <option name="presentableId" value="LOCAL-00004" />
++      <option name="project" value="LOCAL" />
++      <updated>1694056855882</updated>
++    </task>
++    <option name="localTasksCounter" value="5" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+diff --git a/coredemo/demo202309/main.py b/coredemo/kaoshibaodian202309/main.py
+rename from coredemo/demo202309/main.py
+rename to coredemo/kaoshibaodian202309/main.py
+diff --git a/coredemo/demo202309/log.txt b/coredemo/kaoshibaodian202309/log.txt
+rename from coredemo/demo202309/log.txt
+rename to coredemo/kaoshibaodian202309/log.txt
+diff --git a/coredemo/demo202309/testDemo1.py b/coredemo/kaoshibaodian202309/testDemo1.py
+rename from coredemo/demo202309/testDemo1.py
+rename to coredemo/kaoshibaodian202309/testDemo1.py
+diff --git a/coredemo/demo202309/to_word.py b/coredemo/kaoshibaodian202309/to_word.py
+rename from coredemo/demo202309/to_word.py
+rename to coredemo/kaoshibaodian202309/to_word.py
