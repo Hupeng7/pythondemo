@@ -193,7 +193,7 @@ os.mkdir("newdir")
 下例将在当前目录下创建一个新目录test。
 '''
 # 创建目录test
-os.mkdir("test")
+os.mkdir("../test")
 
 '''
 chdir()方法

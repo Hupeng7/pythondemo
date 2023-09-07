@@ -176,7 +176,7 @@ def sql_to_word():
         # 设置段落对齐方式为左对齐
         para.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
 
-        # 添加第二段
+        # 添加第二段 针对有选项的处理方法
         para2 = doc.add_paragraph()
         selected_items_str = data[29]
         if selected_items_str != "":

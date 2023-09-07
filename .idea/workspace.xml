@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a45e85ee-9c5c-42b3-8f0e-f21c9477dc54" name="Changes" comment="add">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_9_7_11_52_[Changes]/shelved.patch" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coredemo/demo202309/httpDemo.py" beforeDir="false" afterPath="$PROJECT_DIR$/coredemo/kaoshibaodian202309/httpDemo.py" afterDir="false" />
@@ -21,6 +22,10 @@
       <change beforePath="$PROJECT_DIR$/coredemo/demo202309/my_document3.docx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/coredemo/demo202309/testDemo1.py" beforeDir="false" afterPath="$PROJECT_DIR$/coredemo/kaoshibaodian202309/testDemo1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coredemo/demo202309/to_word.py" beforeDir="false" afterPath="$PROJECT_DIR$/coredemo/kaoshibaodian202309/to_word.py" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coredemo/py3/demo4.py" beforeDir="false" afterPath="$PROJECT_DIR$/coredemo/py3/demo4.py" afterDir="false" />
+>>>>>>> ba15aff508eea189c5eeaacf2dad8d745b6ce1a8
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +50,7 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+<<<<<<< HEAD
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/coredemo/kaoshibaodian202309/to_word.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/coredemo/kaoshibaodian202309/testDemo1.py" root0="FORCE_HIGHLIGHTING" />
@@ -59,6 +65,9 @@
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
+=======
+  <component name="ProjectId" id="22GaiDwzDKvhbXsAZAdKavXeBXn" />
+>>>>>>> ba15aff508eea189c5eeaacf2dad8d745b6ce1a8
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -66,6 +75,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+<<<<<<< HEAD
     <property name="last_opened_file_path" value="$PROJECT_DIR$/coredemo/demo202309" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
@@ -119,6 +129,13 @@
       <method v="2" />
     </configuration>
     <configuration name="kaoshibaodian_download (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.file-colors" />
+  </component>
+  <component name="RunManager" selected="Python.demo4">
+    <configuration name="demo1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+>>>>>>> ba15aff508eea189c5eeaacf2dad8d745b6ce1a8
       <module name="pythondemo" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -126,11 +143,19 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
+<<<<<<< HEAD
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/coredemo/demo202309" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/coredemo/demo202309/kaoshibaodian_download.py" />
+=======
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/coredemo" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/coredemo/demo1.py" />
+>>>>>>> ba15aff508eea189c5eeaacf2dad8d745b6ce1a8
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -139,7 +164,11 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+<<<<<<< HEAD
     <configuration name="testDemo1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+=======
+    <configuration name="demo4" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+>>>>>>> ba15aff508eea189c5eeaacf2dad8d745b6ce1a8
       <module name="pythondemo" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -151,7 +180,11 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+<<<<<<< HEAD
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/coredemo/demo202309/testDemo1.py" />
+=======
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/coredemo/py3/demo4.py" />
+>>>>>>> ba15aff508eea189c5eeaacf2dad8d745b6ce1a8
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -160,7 +193,11 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+<<<<<<< HEAD
     <configuration name="to_word" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+=======
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+>>>>>>> ba15aff508eea189c5eeaacf2dad8d745b6ce1a8
       <module name="pythondemo" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -168,11 +205,19 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
+<<<<<<< HEAD
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/coredemo/demo202309" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/coredemo/demo202309/to_word.py" />
+=======
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/coredemo/py3" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/coredemo/py3/test.py" />
+>>>>>>> ba15aff508eea189c5eeaacf2dad8d745b6ce1a8
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -183,11 +228,17 @@
     </configuration>
     <recent_temporary>
       <list>
+<<<<<<< HEAD
         <item itemvalue="Python.to_word" />
         <item itemvalue="Python.kaoshibaodian_download (1)" />
         <item itemvalue="Python.testDemo1" />
         <item itemvalue="Python.httpDemo3" />
         <item itemvalue="Python.httpDemo" />
+=======
+        <item itemvalue="Python.demo4" />
+        <item itemvalue="Python.test" />
+        <item itemvalue="Python.demo1" />
+>>>>>>> ba15aff508eea189c5eeaacf2dad8d745b6ce1a8
       </list>
     </recent_temporary>
   </component>
@@ -199,6 +250,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1639466505573</updated>
+<<<<<<< HEAD
     </task>
     <task id="LOCAL-00001" summary="add">
       <created>1639476255762</created>
@@ -229,6 +281,9 @@
       <updated>1694056855882</updated>
     </task>
     <option name="localTasksCounter" value="5" />
+=======
+    </task>
+>>>>>>> ba15aff508eea189c5eeaacf2dad8d745b6ce1a8
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -243,8 +298,11 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add" />
     <option name="LAST_COMMIT_MESSAGE" value="add" />
   </component>
+=======
+>>>>>>> ba15aff508eea189c5eeaacf2dad8d745b6ce1a8
 </project>

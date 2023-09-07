@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 # 导入包
-from coredemo.support import print_func
+from py2demo.support import print_func
 
 # printinfo(name="miki")
 print_func("python")

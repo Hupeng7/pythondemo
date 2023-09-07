@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+<<<<<<< HEAD
 # Python3 数字(Number)
 '''
 Python 支持三种不同的数值类型：
@@ -13,3 +14,6 @@ Python 支持三种不同的数值类型：
 print(abs(-10))
 
 print()
+=======
+
+>>>>>>> ba15aff508eea189c5eeaacf2dad8d745b6ce1a8

@@ -119,7 +119,7 @@ def hex2string(hex_string):
     print("十六进制字符串转换为普通字符串:", normal_string)
     return normal_string
 
-
+# des加密
 def encrypt_des(plaintext, key, iv, mode, padding):
     # 创建一个DES加密器对象
     cipher = DES.new(key, mode, iv)
@@ -132,7 +132,7 @@ def encrypt_des(plaintext, key, iv, mode, padding):
 
     return ciphertext
 
-
+# des解密
 def decrypt_des(ciphertext, key, iv, mode, padding):
     # 创建一个DES加密器对象
     cipher = DES.new(key, mode, iv)
@@ -171,6 +171,7 @@ db = pymysql.connect(host="localhost",
                      db="bigdata",
                      charset="utf8")
 cursor = db.cursor()
+
 table_name = 'bigdata.`test_record`'
 create_time = "'2023-06-30 23:59:59'"
 query_sql = "select * from %s where create_time >= %s limit 1" % (table_name, create_time)
@@ -310,7 +311,6 @@ import httpDemo
 
 # 生成一个随机的浮点数，范围在0.5到1.5之间
 random_sleep_number = random.uniform(0, 2)
-
 
 def save_test_record():
     count = 1
